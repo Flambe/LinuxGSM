@@ -22,7 +22,7 @@ luafastdlfile="lgsm_cl_force_fastdl.lua"
 luafastdlfullpath="${luasvautorundir}/${luafastdlfile}"
 
 # Check if bzip2 is installed.
-if [ ! "$(command -v bzip2 2> /dev/null)" ]; then
+if [ "${engine}" == "source" ] && [ ! "$(command -v bzip2 2> /dev/null)" ]; then
 	fn_print_fail "bzip2 is not installed"
 	fn_script_log_fail "bzip2 is not installed"
 	core_exit.sh
@@ -431,7 +431,11 @@ fn_fastdl_preview
 fn_clear_old_fastdl
 fn_fastdl_dirs
 fn_fastdl_build
-fn_fastdl_bzip2
+
+if [ "${engine}" == "source" ]; then
+	fn_fastdl_bzip2
+fi
+
 # Finished message.
 echo -e "FastDL files are located in:"
 echo -e "${fastdldir}"
