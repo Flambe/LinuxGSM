@@ -94,9 +94,7 @@ fi
 ## Game server exclusive commands.
 
 # FastDL command.
-if [ "${engine}" == "source" ]; then
-	currentopt+=("${cmd_fastdl[@]}")
-fi
+currentopt+=("${cmd_fastdl[@]}")
 
 # TeamSpeak exclusive.
 if [ "${shortname}" == "ts3" ]; then
