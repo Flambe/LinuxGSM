@@ -20,7 +20,7 @@ addonsdir="${systemdir}/addons"
 luasvautorundir="${systemdir}/lua/autorun/server"
 luafastdlfile="lgsm_cl_force_fastdl.lua"
 luafastdlfullpath="${luasvautorundir}/${luafastdlfile}"
-supportsbzip2="$(expr "${engine}" == "source")"
+supportsbzip2="$(("${engine}" == "source"))"
 
 # Check if bzip2 is installed.
 if [ "${supportsbzip2}" == "1" ] && [ ! "$(command -v bzip2 2> /dev/null)" ]; then
@@ -228,7 +228,7 @@ fn_fastdl_preview() {
 	fi
 	compressionmessage=""
 	if [ "${supportsbzip2}" == "1" ]; then
-		compressionmessage = "about to compress ${totalfiles} files, "
+		compressionmessage="about to compress ${totalfiles} files, "
 	fi
 	echo -e "${compressionmessage}total size $(fn_human_readable_file_size ${filesizetotal} 0)"
 	fn_script_log_info "${totalfiles} files, total size $(fn_human_readable_file_size ${filesizetotal} 0)"
